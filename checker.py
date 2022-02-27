@@ -6,11 +6,13 @@ from multiprocessing import Process
 
 def request(url):
     try:
-        return print(f'{urllib.request.urlopen(url, timeout=5).getcode()}\t{url}')
+        code = urllib.request.urlopen(url, timeout=5).getcode()
+        print(f'{code}\t{url}')
+        print(f'screen -dmS "s1" bash -c \'sudo bash ./start.sh {url}\'')
     except urllib.error.URLError as e:
-        return print(f'{e.reason}\t{url}')
+        print(f'{e.reason}\t{url}')
     except BaseException as e:
-        return print(f'{e.__class__}\t{url}')
+        print(f'{e.__class__}\t{url}')
 
 def get_urls_text():
     with open('urls.txt', 'r', encoding="utf8") as file:
