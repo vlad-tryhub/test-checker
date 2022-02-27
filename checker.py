@@ -28,10 +28,10 @@ def run_requests_in_parallel(urls):
 
 if __name__ == '__main__':
     file_content = get_urls_text()
-    matches = re.findall("(https?://[^\s\(\)]+)", file_content)
+    matches = re.findall("(https?://[^\s\(\)/]+)", file_content)
     filtered_matches = filter(lambda x: len(re.findall("(youtube)|(facebook)", x)) == 0, matches)
     filtered_matches = list([match.rstrip("/") for match in filtered_matches])
     distinct_matches = list(set(filtered_matches))
     distinct_matches.sort()
-    #print('\n'.join(distinct_matches))
-    run_requests_in_parallel(distinct_matches)
+    print('\n'.join(distinct_matches))
+    #run_requests_in_parallel(distinct_matches)
