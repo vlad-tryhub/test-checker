@@ -6,7 +6,7 @@ from multiprocessing import Process
 
 def request(url):
     try:
-        return print(f'{urllib.request.urlopen(url).getcode()}\t{url}')
+        return print(f'{urllib.request.urlopen(url, timeout=5).getcode()}\t{url}')
     except urllib.error.URLError as e:
         return print(f'{e.reason}\t{url}')
     except BaseException as e:
